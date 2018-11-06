@@ -6,12 +6,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrokersComponent } from './brokers/brokers.component';
 import { StocksComponent } from './stocks/stocks.component';
+import { BursesettsComponent } from './bursesetts/bursesetts.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BrokersComponent,
-    StocksComponent
+    StocksComponent,
+    BursesettsComponent
   ],
   imports: [
     BrowserModule,
