@@ -1,0 +1,64 @@
+<div class="w3-container">
+  <div class="w3-display-topright">
+    <button class="w3-button w3-block w3-indigo w3-section w3-padding"
+            (click)="showAddingModal()">
+      Добавить брокера
+    </button>
+  </div>
+  <ul class="brokers w3-ul w3-hoverable">
+    <li *ngFor="let broker of brokers"
+        (click)="onSelect(broker)">
+      <span class="badge">{{broker.id}}</span> {{broker.name}} with {{broker.money}}$
+    </li>
+  </ul>
+</div>
+
+<div id="brokerInfo" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom w3-card-4" style="max-width:400px">
+    <div *ngIf="selectedBroker">
+      <header class="w3-container w3-indigo">
+        <span onclick="document.getElementById('brokerInfo').style.display='none'"
+              class="w3-button w3-display-topright">&times;</span>
+        <h2 class="w3-center">{{selectedBroker.name | uppercase}} {{selectedBroker.money}}$</h2>
+      </header>
+      <div class="w3-container">
+        <div><span><b>id: </b> </span>{{selectedBroker.id}}</div>
+        <div>
+          <label><b>Деньги:</b>
+            <input [(ngModel)]="selectedBroker.money" placeholder="money" class="w3-input w3-border w3-margin-bottom" type="number">
+          </label>
+        </div>
+        <button class="w3-button w3-block w3-red w3-section w3-padding"
+                (click)="deleteBlocker(selectedBroker.id)">
+          Удалить брокера
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="add-broker-modal" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom w3-card-4" style="max-width:600px">
+    <header class="w3-container w3-indigo">
+      <span onclick="document.getElementById('add-broker-modal').style.display='none'"
+            class="w3-button w3-display-topright">&times;</span>
+      <h2 class="w3-center">Добавление блокера</h2>
+    </header>
+    <div class="w3-container">
+      <div>
+        <label><b>Имя блокера:</b>
+          <input [(ngModel)]="bname" placeholder="Введите имя" class="w3-input w3-border w3-margin-bottom" type="text" id="bname">
+        </label>
+      </div>
+      <div>
+        <label><b>Начальный объем денежных средств:</b>
+          <input [(ngModel)]="bmoney" placeholder="Введите кол-во денег $" class="w3-input w3-border w3-margin-bottom" type="number" id="bmoney">
+        </label>
+      </div>
+      <button class="w3-button w3-block w3-red w3-section w3-padding"
+              (click)="addBlocker(bname, bmoney)">
+        Подтвердить
+      </button>
+    </div>
+  </div>
+</div>
