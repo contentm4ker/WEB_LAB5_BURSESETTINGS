@@ -1,6 +1,10 @@
 <!--The content below is only a placeholder and can be replaced.-->
 
 <h1>{{title}}</h1>
-<app-brokers></app-brokers>
+<div class="w3-bar w3-indigo">
+  <a [routerLink] = "['/brokers']" class="w3-bar-item w3-button w3-mobile">Брокеры</a>
+  <a [routerLink] = "['/stocks']" class="w3-bar-item w3-button w3-mobile">Акции</a>
+  <a class="w3-bar-item w3-button w3-mobile">Настройки</a>
+</div>
 
 <router-outlet></router-outlet>

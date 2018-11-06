@@ -9,11 +9,15 @@ import { BROKERS } from '../mock-brokers';
 })
 export class BrokersComponent implements OnInit {
 
-  constructor() { }
+  max_id: number = Math.max.apply(null, BROKERS.map(function (broker) {
+    return broker.id;
+  }));
 
   brokers: Broker[] = BROKERS;
 
   selectedBroker: Broker;
+
+  constructor() { }
 
   ngOnInit() {
   }
@@ -24,16 +28,14 @@ export class BrokersComponent implements OnInit {
       .style.display='block';
   }
 
-  showAddingModal(): void {
+  static showAddingModal(): void {
     document.getElementById('add-broker-modal')
       .style.display='block';
   }
 
   addBlocker(name: string, money: string): void {
-    let len = this.brokers.length;
-    let id = this.brokers[len-1].id++;
     this.brokers.push({
-      id: id,
+      id: ++this.max_id,
       name: name,
       money: Number(money)
     });

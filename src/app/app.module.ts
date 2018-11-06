@@ -5,16 +5,18 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrokersComponent } from './brokers/brokers.component';
+import { StocksComponent } from './stocks/stocks.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BrokersComponent
+    BrokersComponent,
+    StocksComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,57 @@
+<div class="w3-container">
+  <div class="w3-display-topright">
+    <button class="w3-button w3-block w3-indigo w3-section w3-padding w3-margin-right"
+            (click)="showAddingModal()">
+      Добавить акцию
+    </button>
+  </div>
+  <ul class="stocks w3-ul w3-hoverable" *ngFor="let stock of stocks">
+    <li>
+      <span class="badge">{{stock.id}}</span> Распределительный закон: <b>{{laws[stock.distributionLaw]}}</b> |
+      Макс. значение для изменения: <b>{{stock.maxDelta}}</b> |
+      Общее количество доступных акций: <b>{{stock.amount}}</b> |
+      Начальная стоимость одной акции: <b>{{stock.startPrice}}</b>}
+      <span (click)="onSelect(stock)" class="w3-button">&times;</span>
+    </li>
+  </ul>
+</div>
+
+<div id="add-stock-modal" class="w3-modal">
+  <div class="w3-modal-content w3-animate-zoom w3-card-4" style="max-width:600px">
+    <header class="w3-container w3-indigo">
+      <span onclick="document.getElementById('add-stock-modal').style.display='none'"
+            class="w3-button w3-display-topright">&times;</span>
+      <h2 class="w3-center">Добавление акции</h2>
+    </header>
+    <div class="w3-container">
+      <div>
+        <label><b>Выберите закон распределения:</b>
+          <select [(ngModel)]="slaw" class="w3-select" name="option">
+            <option value=0>Равномерный</option>
+            <option value=1>Нормальный</option>
+            <option value=2>Биномиальный</option>
+          </select>
+        </label>
+      </div>
+      <div>
+        <label><b>Введите максимальное значение для изменения:</b>
+          <input [(ngModel)]="smax" placeholder="Макс. значение" class="w3-input w3-border w3-margin-bottom" type="number">
+        </label>
+      </div>
+      <div>
+        <label><b>Введите количество акций:</b>
+          <input [(ngModel)]="scount" placeholder="Кол-во акций" class="w3-input w3-border w3-margin-bottom" type="number">
+        </label>
+      </div>
+      <div>
+        <label><b>Введите начальную стоимость:</b>
+          <input [(ngModel)]="sprice" placeholder="Цена" class="w3-input w3-border w3-margin-bottom" type="number">
+        </label>
+      </div>
+      <button class="w3-button w3-block w3-red w3-section w3-padding"
+              (click)="addStock(slaw, smax, scount, sprice)">
+        Подтвердить
+      </button>
+    </div>
+  </div>
+</div>
