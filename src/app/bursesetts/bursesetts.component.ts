@@ -24,4 +24,13 @@ export class BursesettsComponent implements OnInit {
       this.intvl = this.settings.delta_time
     });
   }
+
+  updateSettings() {
+    this.server.putSettings(
+      {
+      start_time: this.starttime,
+      end_time: this.endtime,
+      delta_time: this.intvl
+      })
+  }
 }

@@ -1,6 +1,9 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import { Observable } from 'rxjs';
+import {BurseSettings} from "./settings_burse";
+import {Stock} from "./stock";
+import {Broker} from "./broker";
 
 @Injectable()
 export class ServerinteractionService {
@@ -19,11 +22,11 @@ export class ServerinteractionService {
     return this.http.get('/api/settings');
   }
 
-  postBrocker(new_broker): void {
+  postBrocker(new_broker: Broker): void {
     this.http.post('/api/brockers', new_broker).subscribe();
   }
 
-  postStock(stock): void {
+  postStock(stock: Stock): void {
     this.http.post('/api/stocks', stock).subscribe();
   }
 
@@ -39,7 +42,7 @@ export class ServerinteractionService {
     this.http.put('/api/brockers', {id: id, money: money}).subscribe();
   }
 
-  putSettings(setts): void {
+  putSettings(setts: BurseSettings): void {
     this.http.put('/api/settings', setts).subscribe();
   }
 }
