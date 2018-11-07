@@ -12,7 +12,7 @@ export class BursesettsComponent implements OnInit {
   settings: BurseSettings;
   intvl: number;
   starttime: string;
-  endtime: string
+  endtime: string;
 
   constructor(private server: ServerinteractionService) { }
 
@@ -31,6 +31,7 @@ export class BursesettsComponent implements OnInit {
       start_time: this.starttime,
       end_time: this.endtime,
       delta_time: this.intvl
-      })
+      });
+    alert('Изменения успешно сохранены!');
   }
 }

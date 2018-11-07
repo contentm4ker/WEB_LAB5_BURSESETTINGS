@@ -1,10 +1,1 @@
-{
-  "11": { "name": "Mr. Nice", "money": 10000 },
-  "12": { "name": "Narco", "money": 50000 },
-  "13": { "name": "Bombasto", "money": 30000 },
-  "14": { "name": "Celeritas", "money": 16070 },
-  "15": { "name": "Magneta", "money": 13400 },
-  "16": { "name": "RubberMan", "money": 26200 },
-  "17": { "name": "Dynama", "money": 56000 },
-  "18": { "name": "Magma", "money": 10600 }
-}
+{"11":{"name":"Mr. Nice","money":10000},"12":{"name":"Narco","money":50000},"13":{"name":"Bombasto","money":30000},"14":{"name":"Celeritas","money":16070},"15":{"name":"Magneta","money":12345},"16":{"name":"RubberMan","money":26200},"18":{"name":"Magma","money":10600},"19":{"name":"Vanya","money":5555555}}
