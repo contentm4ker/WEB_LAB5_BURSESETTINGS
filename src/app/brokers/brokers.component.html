@@ -17,7 +17,7 @@
   <div class="w3-modal-content w3-animate-zoom w3-card-4" style="max-width:400px">
     <div *ngIf="selectedBroker">
       <header class="w3-container w3-indigo">
-        <span onclick="document.getElementById('brokerInfo').style.display='none'"
+        <span (click)="updateBrocker(selectedBroker.id, selectedBroker.money)"
               class="w3-button w3-display-topright">&times;</span>
         <h2 class="w3-center">{{selectedBroker.name | uppercase}} {{selectedBroker.money}}$</h2>
       </header>
@@ -29,7 +29,7 @@
           </label>
         </div>
         <button class="w3-button w3-block w3-red w3-section w3-padding"
-                (click)="deleteBlocker(selectedBroker.id)">
+                (click)="deleteBrocker(selectedBroker.id)">
           Удалить брокера
         </button>
       </div>
@@ -56,7 +56,7 @@
         </label>
       </div>
       <button class="w3-button w3-block w3-red w3-section w3-padding"
-              (click)="addBlocker(bname, bmoney)">
+              (click)="addBrocker(bname, bmoney)">
         Подтвердить
       </button>
     </div>

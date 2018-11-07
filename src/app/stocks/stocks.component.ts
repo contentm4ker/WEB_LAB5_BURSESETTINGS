@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Stock } from '../stock';
-import { STOCKS } from '../mock-stocks';
+import {ServerinteractionService} from "../serverinteraction.service";
 
 @Component({
   selector: 'app-stocks',
@@ -9,36 +9,45 @@ import { STOCKS } from '../mock-stocks';
 })
 export class StocksComponent implements OnInit {
 
-  max_id: number = Math.max.apply(null, STOCKS.map(function (stock) {
-    return stock.id;
-  }));
-
   laws = ['равномерный', 'нормальный', 'биномиальный'];
 
-  stocks: Stock[] = STOCKS;
+  stocks: Stock[];
 
-  constructor() { }
+  max_id: number;
+
+  constructor(private server: ServerinteractionService) { }
 
   ngOnInit() {
+    this.server.getStocks().subscribe((stocks) => {
+      this.stocks = stocks as Stock[];
+      this.max_id = Math.max.apply(null, this.stocks.map(function (stock) {
+        return stock.id;
+      }));
+    });
   }
 
   onSelect(stock: Stock): void {
     this.deleteStock(stock.id);
   }
 
-  static showAddingModal(): void {
+  showAddingModal(): void {
     document.getElementById('add-stock-modal')
       .style.display='block';
   }
 
   addStock(i_law: string, delta: string, amount: string, price: string): void {
-    this.stocks.push({
+    let new_stock = {
       id: ++this.max_id,
       distributionLaw: Number(i_law),
       maxDelta: Number(delta),
       amount: Number(amount),
       startPrice: Number(price),
-    });
+    };
+
+    this.stocks.push(new_stock);
+
+    this.server.postStock(new_stock);
+
     document.getElementById('add-stock-modal')
       .style.display='none';
   }
@@ -48,6 +57,7 @@ export class StocksComponent implements OnInit {
       return element.id === id;
     });
     this.stocks.splice(ind, 1);
+    this.server.deleteStock(ind);
   }
 
 }

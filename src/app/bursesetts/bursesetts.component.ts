@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {ServerinteractionService} from "../serverinteraction.service";
+import {BurseSettings} from "../settings_burse";
 
 @Component({
   selector: 'app-bursesetts',
@@ -7,10 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BursesettsComponent implements OnInit {
 
-  val: number = 5;
+  settings: BurseSettings;
+  intvl: number;
+  starttime: string;
+  endtime: string
 
-  constructor() { }
+  constructor(private server: ServerinteractionService) { }
 
   ngOnInit() {
+    this.server.getSettings().subscribe((setts) => {
+      this.settings = setts as BurseSettings;
+      this.starttime = this.settings.start_time;
+      this.endtime = this.settings.end_time;
+      this.intvl = this.settings.delta_time
+    });
   }
 }

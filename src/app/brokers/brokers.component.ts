@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Broker } from '../broker';
-import { BROKERS } from '../mock-brokers';
+import { ServerinteractionService } from "../serverinteraction.service";
 
 @Component({
   selector: 'app-brokers',
@@ -9,17 +9,21 @@ import { BROKERS } from '../mock-brokers';
 })
 export class BrokersComponent implements OnInit {
 
-  max_id: number = Math.max.apply(null, BROKERS.map(function (broker) {
-    return broker.id;
-  }));
-
-  brokers: Broker[] = BROKERS;
+  brokers: Broker[];
 
   selectedBroker: Broker;
 
-  constructor() { }
+  max_id: number;
+
+  constructor(private server: ServerinteractionService) { }
 
   ngOnInit() {
+    this.server.getBrockers().subscribe((brokers) => {
+      this.brokers = brokers as Broker[];
+      this.max_id = Math.max.apply(null, this.brokers.map(function (broker) {
+        return broker.id;
+      }));
+    });
   }
 
   onSelect(broker: Broker): void {
@@ -28,27 +32,39 @@ export class BrokersComponent implements OnInit {
       .style.display='block';
   }
 
-  static showAddingModal(): void {
+  showAddingModal(): void {
     document.getElementById('add-broker-modal')
       .style.display='block';
   }
 
-  addBlocker(name: string, money: string): void {
-    this.brokers.push({
+  addBrocker(name: string, money: string): void {
+    let new_broker = {
       id: ++this.max_id,
       name: name,
       money: Number(money)
-    });
+    };
+
+    this.brokers.push(new_broker);
+
+    this.server.postBrocker(new_broker);
+
     document.getElementById('add-broker-modal')
       .style.display='none';
   }
 
-  deleteBlocker(id: number): void {
+  deleteBrocker(id: number): void {
     let ind: number = this.brokers.findIndex(function (element: Broker) {
       return element.id === id;
     });
     this.brokers.splice(ind, 1);
+
+    this.server.deleteBrocker(ind);
     document.getElementById('brokerInfo')
       .style.display='none';
+  }
+
+  updateBrocker(id: number, money: number): void {
+    this.server.putBrocker(id, money);
+    document.getElementById('brokerInfo').style.display='none';
   }
 }

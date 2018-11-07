@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { BrokersComponent } from './brokers/brokers.component';
 import { StocksComponent } from './stocks/stocks.component';
 import { BursesettsComponent } from './bursesetts/bursesetts.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { BursesettsComponent } from './bursesetts/bursesetts.component';
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

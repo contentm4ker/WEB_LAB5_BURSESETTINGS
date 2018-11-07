@@ -2,22 +2,22 @@
   <tr>
     <th>Время начала торгов</th>
     <td colspan="2">
-      <input type="time" id="appt-time1" class="w3-input" min="9:00" max="18:00"/>
+      <input [(ngModel)]="starttime" type="time" id="appt-time1" class="w3-input" min="9:00" max="18:00"/>
     </td>
   </tr>
   <tr>
     <th>Время окончания торгов</th>
     <td colspan="2">
-      <input type="time" id="appt-time2" class="w3-input" min="9:00" max="18:00"/>
+      <input [(ngModel)]="endtime" type="time" id="appt-time2" class="w3-input" min="9:00" max="18:00"/>
     </td>
   </tr>
   <tr>
     <th>Интервал пересчета акций</th>
     <td>
-      <input [(ngModel)]="val" type="range" min="1" max="20" value=5 class="w3-input slider"/>
+      <input [(ngModel)]="intvl" type="range" min="1" max="20" value=5 class="w3-input slider"/>
     </td>
     <td>
-      <span #deltat>{{val}} мин</span>
+      <span #deltat>{{intvl}} мин</span>
     </td>
   </tr>
 </table>
