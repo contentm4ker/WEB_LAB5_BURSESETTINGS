@@ -9,5 +9,5 @@ import { ServerinteractionService } from './serverinteraction.service'
 })
 
 export class AppComponent {
-  title = 'Настройка биржи блокера';
+  title = 'Настройка биржи брокера';
 }
